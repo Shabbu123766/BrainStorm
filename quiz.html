@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainStorm Academy - Challenge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(102, 126, 234, 0.6); }
+        }
+        .progress-glow {
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.4);
+        }
+        .option-selected {
+            background: rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.8);
+            transform: scale(1.02);
+        }
+        .timer-warning {
+            animation: timer-warning 1s ease-in-out infinite;
+        }
+        @keyframes timer-warning {
+            0%, 100% { color: #fbbf24; }
+            50% { color: #f59e0b; }
+        }
+        .timer-danger {
+            animation: timer-danger 0.5s ease-in-out infinite;
+        }
+        @keyframes timer-danger {
+            0%, 100% { color: #ef4444; }
+            50% { color: #dc2626; }
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen font-['Inter']">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="relative z-10 glass-effect border-b border-white/20">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <h1 class="text-xl font-bold text-white">BrainStorm Academy</h1>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-2 text-white">
+                        <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                            <span class="text-sm font-bold" id="current-score">0</span>
+                        </div>
+                        <span class="text-sm font-medium">Score</span>
+                    </div>
+                    <a href="profile.html" class="glass-effect rounded-xl px-4 py-2 text-sm font-medium text-white hover:bg-white/20 transition-colors">
+                        Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 flex-1 py-8 px-6">
+        <div class="max-w-4xl mx-auto">
+            <!-- Progress Section -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-4">
+                        <span class="text-white/80 text-sm font-medium">
+                            Challenge <span id="current-question" class="text-white font-bold">1</span> of <span id="total-questions" class="text-white font-bold">10</span>
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-2 text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span id="timer" class="font-mono font-bold text-lg">00:30</span>
+                    </div>
+                </div>
+                <div class="w-full bg-white/20 rounded-full h-3 overflow-hidden">
+                    <div class="bg-gradient-to-r from-blue-400 to-purple-500 h-3 rounded-full transition-all duration-500 progress-glow" id="progress-bar" style="width: 10%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="glass-effect rounded-3xl p-8 mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-white leading-relaxed mb-8" id="question-text">
+                    Loading challenge...
+                </h2>
+                <div class="space-y-4" id="options-container">
+                    <!-- Options will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between items-center">
+                <button id="prev-btn" class="flex items-center gap-2 glass-effect rounded-2xl px-6 py-3 text-white font-medium transition-all duration-300 hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Previous
+                </button>
+                
+                <button id="skip-btn" class="flex items-center gap-2 glass-effect rounded-2xl px-6 py-3 text-white font-medium transition-all duration-300 hover:bg-white/20">
+                    Skip
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+                
+                <button id="next-btn" class="flex items-center gap-2 bg-white text-gray-900 rounded-2xl px-8 py-3 font-bold transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                    Next
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toast" class="fixed inset-x-0 top-4 z-50 flex justify-center px-4 pointer-events-none hidden">
+        <div class="max-w-xl w-full">
+            <div class="glass-effect rounded-2xl text-white shadow-2xl px-6 py-4 flex items-start gap-4 pointer-events-auto">
+                <div class="text-yellow-400 mt-0.5">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 4h.01M12 5a7 7 0 100 14 7 7 0 000-14z" />
+                    </svg>
+                </div>
+                <div id="toast-message" class="text-sm font-medium">Message</div>
+            </div>
+        </div>
+        
+        <style>
+            .toast-show { display: flex !important; animation: fadeIn 200ms ease-out; }
+            .toast-hide { animation: fadeOut 200ms ease-in; }
+            @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+            @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-6px); } }
+        </style>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>

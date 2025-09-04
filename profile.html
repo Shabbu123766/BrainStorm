@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainStorm Academy - Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(102, 126, 234, 0.6); }
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen font-['Inter']">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="relative z-10 glass-effect border-b border-white/20">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <h1 class="text-xl font-bold text-white">BrainStorm Academy</h1>
+                    </div>
+                </div>
+                <nav class="flex items-center gap-6 text-sm">
+                    <a class="font-medium text-white/70 transition-colors hover:text-white" href="index.html">Home</a>
+                    <a class="font-medium text-white/70 transition-colors hover:text-white" href="results.html">Results</a>
+                    <a class="font-bold text-white transition-colors" href="profile.html">Profile</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 flex-1 py-12 px-6">
+        <div class="max-w-4xl mx-auto">
+            <!-- Profile Header -->
+            <div class="text-center mb-12">
+                <div class="floating mb-6">
+                    <div class="inline-flex items-center justify-center w-24 h-24 bg-white/20 rounded-3xl glass-effect neon-glow">
+                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Scholar Profile</h2>
+                <p class="text-xl text-white/70 max-w-2xl mx-auto">
+                    Customize your learning experience and track your intellectual journey.
+                </p>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="glass-effect rounded-3xl p-8 mb-8">
+                <div class="max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center">Personal Information</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-white/80 text-lg font-medium mb-3" for="profile-name">
+                                Scholar Name
+                            </label>
+                            <input 
+                                id="profile-name" 
+                                type="text" 
+                                placeholder="Enter your name" 
+                                class="w-full rounded-2xl bg-white/10 border border-white/20 px-6 py-4 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent text-lg transition-all duration-300"
+                            />
+                        </div>
+                        
+                        <div class="pt-4">
+                            <button 
+                                id="save-profile" 
+                                class="w-full group relative overflow-hidden rounded-2xl bg-white text-gray-900 px-8 py-4 text-lg font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                            >
+                                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <span class="relative z-10 flex items-center justify-center gap-3">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    Save Profile
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="glass-effect rounded-2xl p-6 text-center">
+                    <div class="text-3xl mb-3">🎯</div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Challenges Completed</h4>
+                    <p class="text-3xl font-bold text-white">0</p>
+                </div>
+                <div class="glass-effect rounded-2xl p-6 text-center">
+                    <div class="text-3xl mb-3">⚡</div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Average Score</h4>
+                    <p class="text-3xl font-bold text-white">0%</p>
+                </div>
+                <div class="glass-effect rounded-2xl p-6 text-center">
+                    <div class="text-3xl mb-3">🏆</div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Best Performance</h4>
+                    <p class="text-3xl font-bold text-white">0/10</p>
+                </div>
+            </div>
+
+            <!-- Achievement Badges -->
+            <div class="glass-effect rounded-3xl p-8">
+                <h3 class="text-2xl font-bold text-white mb-6 text-center">Achievement Badges</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="text-center p-4 bg-white/10 rounded-xl">
+                        <div class="text-4xl mb-2 opacity-50">🥇</div>
+                        <p class="text-sm font-medium text-white/70">First Challenge</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/10 rounded-xl">
+                        <div class="text-4xl mb-2 opacity-50">🎯</div>
+                        <p class="text-sm font-medium text-white/70">Perfect Score</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/10 rounded-xl">
+                        <div class="text-4xl mb-2 opacity-50">⚡</div>
+                        <p class="text-sm font-medium text-white/70">Speed Demon</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/10 rounded-xl">
+                        <div class="text-4xl mb-2 opacity-50">🧠</div>
+                        <p class="text-sm font-medium text-white/70">Master Mind</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 glass-effect border-t border-white/20 mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-6 text-center">
+            <p class="text-white/60 text-sm">© 2024 BrainStorm Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const input = document.getElementById('profile-name');
+        const btn = document.getElementById('save-profile');
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('profileName') || '';
+            input.value = saved;
+        });
+        
+        btn.addEventListener('click', () => {
+            localStorage.setItem('profileName', input.value.trim());
+            // Enhanced confirmation with animation
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `
+                <span class="relative z-10 flex items-center justify-center gap-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Profile Saved!
+                </span>
+            `;
+            btn.classList.add('bg-green-500');
+            setTimeout(() => { 
+                btn.innerHTML = originalText;
+                btn.classList.remove('bg-green-500');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
